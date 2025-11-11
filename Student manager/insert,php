@@ -1,0 +1,15 @@
+<?php
+include 'connect.php';
+
+$id = $_POST['id'];
+$name = $_POST['name'];
+$course = $_POST['course'];
+
+$sql = "INSERT INTO students (id, name, course) VALUES ('$id', '$name', '$course')";
+if ($conn->query($sql) === TRUE) {
+  echo "<h3>Student Added Successfully!</h3><a href='index.html'>Go Back</a>";
+} else {
+  echo "Error: " . $conn->error;
+}
+$conn->close();
+?>

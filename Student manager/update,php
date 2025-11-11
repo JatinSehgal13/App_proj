@@ -1,0 +1,21 @@
+<?php
+include 'connect.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $id = $_POST['id'];
+  $name = $_POST['name'];
+  $course = $_POST['course'];
+  $sql = "UPDATE students SET name='$name', course='$course' WHERE id=$id";
+  if ($conn->query($sql) === TRUE) {
+    echo "<h3>Record Updated!</h3><a href='index.html'>Go Back</a>";
+  } else {
+    echo "Error updating record: " . $conn->error;
+  }
+}
+?>
+<form method="POST">
+  <h2>Update Student</h2>
+  <input type="text" name="id" placeholder="Student ID" required>
+  <input type="text" name="name" placeholder="New Name" required>
+  <input type="text" name="course" placeholder="New Course" required>
+  <button type="submit">Update</button>
+</form>
